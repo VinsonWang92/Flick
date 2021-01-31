@@ -1,44 +1,73 @@
-### Index method
+### Watchlist Index method
 GET http://localhost:3000/api/watchlists
 
-### Successfully post watchlist
+### Successfully create watchlist
 POST http://localhost:3000/api/watchlists
 Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE3OTgyMTAsInN1YiI6MX0.vg3qhbKgbcBmXbAf3s6rnleqsClIzE612p12y6wt30M
 
 {
-  "user_id": 2,
   "movie_id": 23,
   "title": "Totoro"
 }
 
-### Unsuccessfully post watchlist
+### Unsuccessfully create watchlist
 POST http://localhost:3000/api/watchlists
 Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE3OTgyMTAsInN1YiI6MX0.vg3qhbKgbcBmXbAf3s6rnleqsClIzE612p12y6wt30M
 
 {
 }
 
-### Successfully show watchlist id: 1
-GET http://localhost:3000/api/watchlists/1
+### Successfully show_list_by_user_id user_id: 2
+GET http://localhost:3000/api/watchlists/2
 
-### Unsuccessfuly show watchlist id: 1000
+### Unsuccessfuly show_list_by_user_id user_id: 1000
 GET http://localhost:3000/api/watchlists/1000
 
 ### Successfully delete watchlist id: 1
 DELETE http://localhost:3000/api/watchlists/1
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE3ODgwMjksInN1YiI6MX0.3x2ZDVDtTsNA1zuQxcrw7wKraBxT_ab8_3dhOVpX-oE
 
-### Unsuccessfully delete watchlist id: 1000
+### Unsuccessfully delete watchlist id: 2. Not creator of watchlist.
+DELETE http://localhost:3000/api/watchlists/2
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE3ODgwMjksInN1YiI6MX0.3x2ZDVDtTsNA1zuQxcrw7wKraBxT_ab8_3dhOVpX-oE
+
+
+### Unsuccessfully delete watchlist id: 1000. No existing watchlist.
 DELETE http://localhost:3000/api/watchlists/1000
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE3ODgwMjksInN1YiI6MX0.3x2ZDVDtTsNA1zuQxcrw7wKraBxT_ab8_3dhOVpX-oE
 
 ### Successfully create user
 POST http://localhost:3000/api/auth/sign_up
 Content-Type: application/json
 
 {
-  "username": "Barry", 
-  "email": "barry@test.com",
-  "password": "password3",
-  "password_confirmation": "password3"
+  "username": "Sally", 
+  "email": "sally@test.com",
+  "password": "password6",
+  "password_confirmation": "password6"
+}
+
+### Unsuccessfully create user. Missing field.
+POST http://localhost:3000/api/auth/sign_up
+Content-Type: application/json
+
+{
+  "email": "sally@test.com",
+  "password": "password6",
+  "password_confirmation": "password6"
+}
+
+### Unsuccessfully create user. Unable to validate email.
+POST http://localhost:3000/api/auth/sign_up
+Content-Type: application/json
+
+{
+  "username": "Sally", 
+  "email": "sallytest.com",
+  "password": "password6",
+  "password_confirmation": "password6"
 }
 
 ### Successfully sign_in˛
@@ -46,8 +75,17 @@ POST http://localhost:3000/api/auth/sign_in
 Content-Type: application/json
 
 {
-  "email": "barry@test.com",
-  "password": "password3"
+  "email": "sally@test.com",
+  "password": "password6"
+}
+
+### Successfully sign_in˛
+POST http://localhost:3000/api/auth/sign_in
+Content-Type: application/json
+
+{
+  "email": "pikachu@test.com",
+  "password": "password1"
 }
 
 ### Unsuccessful sign_in
@@ -58,3 +96,91 @@ Content-Type: application/json
   "email": "barry@test.com",
   "password": "password"
 }
+
+### Successful show profile id:4
+POST http://localhost:3000/api/auth/profile
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE4ODIwMDAsInN1YiI6NH0.9BfqaTCH_rVIl690UWg4f939jywdHTv4xbwV4b7ZNlI
+
+### Successfully update username
+PUT http://localhost:3000/api/auth/update
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE4ODIwMDAsInN1YiI6NH0.9BfqaTCH_rVIl690UWg4f939jywdHTv4xbwV4b7ZNlI
+
+{
+  "username": "Fally" 
+}
+
+### Successfully update email
+PUT http://localhost:3000/api/auth/update
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE4ODIwMDAsInN1YiI6NH0.9BfqaTCH_rVIl690UWg4f939jywdHTv4xbwV4b7ZNlI
+
+{
+  "email": "Fally@test.com" 
+}
+
+### Successfully sign_in˛with updated email
+POST http://localhost:3000/api/auth/sign_in
+Content-Type: application/json
+
+{
+  "email": "Fally@test.com",
+  "password": "password6"
+}
+
+### Successfully update password
+PUT http://localhost:3000/api/auth/update
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE4ODIwMDAsInN1YiI6NH0.9BfqaTCH_rVIl690UWg4f939jywdHTv4xbwV4b7ZNlI
+
+{
+  "password": "password456"
+}
+
+### Successfully sign_in˛with updated password
+POST http://localhost:3000/api/auth/sign_in
+Content-Type: application/json
+
+{
+  "email": "Fally@test.com",
+  "password": "password456"
+}
+
+### Successfully delete current_user id: 1
+DELETE http://localhost:3000/api/auth/delete
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE3OTgyMTAsInN1YiI6MX0.vg3qhbKgbcBmXbAf3s6rnleqsClIzE612p12y6wt30M
+
+
+
+
+### Friendship Index method
+GET http://localhost:3000/api/friendships
+
+### Successfully create friendship for Sally id:4
+POST http://localhost:3000/api/friendships
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE4Nzk4NTAsInN1YiI6NH0.hKZziFbCE-DFXAQliRXbj0NhimRlSIoV1EHBTmOM4Nk
+
+{
+  "email": "squirtle@test.com"
+}
+
+### Unsuccessfully create friendship for Sally id:4
+POST http://localhost:3000/api/friendships
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE4Nzk4NTAsInN1YiI6NH0.hKZziFbCE-DFXAQliRXbj0NhimRlSIoV1EHBTmOM4Nk
+
+{
+  "email": "poop@poop.com"
+}
+
+### Successfully show_list_by_user_id user_id: 1
+GET http://localhost:3000/api/friendships/1
+
+### Successfully delete friendship id: 2
+DELETE http://localhost:3000/api/friendships/3
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE4OTU1ODAsInN1YiI6MX0.Ij-Uv7WRpNnYBn1GZxKw5EhIwOxJFqOOxR5iGdQFevk
+
+### Unsuccessfully delete friendship id: 1000. No existing friendship.
+DELETE http://localhost:3000/api/friendships/1000
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTE3ODgwMjksInN1YiI6MX0.3x2ZDVDtTsNA1zuQxcrw7wKraBxT_ab8_3dhOVpX-oE

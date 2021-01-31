@@ -8,29 +8,20 @@
 
 require 'faker'
 
-# if Movie.all.length == 0
-#   3.times {
-#     movie_title = Faker::Movie.title
-#     movie_release_date = Faker::Date.between(from: '2014-09-23', to: Date.today)
-#     movie_description = Faker::Movie.quote
-#     movie_genre = Faker::Book.genre
-#     movie_run_time = rand(60..360)
-
-#     Movie.create(title: movie_title, release_date: movie_release_date, description: movie_description, genre: movie_genre, run_time: movie_run_time)
-
-#     puts "Created Movie: #{movie_title}."
-#   }
-# end
-
 if User.count == 0
   User.create(username: "pikachu", email: "pikachu@test.com", password: "password1", password_confirmation: "password1")
   User.create(username: "charmander", email: "char@test.com", password: "password2", password_confirmation: "password2")
   User.create(username: "squirtle", email: "squirtle@test.com", password: "password3", password_confirmation: "password3")
-
   puts "Created Users."
 end
 
 if Watchlist.all.length == 0
+  Watchlist.create(user_id: 1, movie_id: 133, title: "Land before time")
+  puts "Created Movie in Watchlist: Land before time, 1."
+
+  Watchlist.create(user_id: 2, movie_id: 1444, title: "Little mermaid")
+  puts "Created Movie in Watchlist: Little mermaid, 2."
+
   6.times {
     user_id = rand(1..3)
     movie_id = rand(60..360)
@@ -40,6 +31,13 @@ if Watchlist.all.length == 0
 
     puts "Created Movie in Watchlist: #{title}, #{user_id}."
   }
+end
+
+if Friendship.count == 0
+  Friendship.create(user_id: 1, friend_id: 2)
+  Friendship.create(user_id: 1, friend_id: 3)
+  Friendship.create(user_id: 2, friend_id: 1)
+  puts "Created Friendships."
 end
 
 

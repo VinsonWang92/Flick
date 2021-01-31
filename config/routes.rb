@@ -4,11 +4,19 @@ Rails.application.routes.draw do
   scope '/api' do
     get '/watchlists', to: 'watchlists#index'
     post '/watchlists', to: 'watchlists#create'
-    get '/watchlists/:id', to: 'watchlists#show'
+    get '/watchlists/:id', to: 'watchlists#show_list_by_user_id'
     delete '/watchlists/:id', to: 'watchlists#destroy'
+    get '/friendships', to: 'friendships#index'
+    post '/friendships', to: 'friendships#create'
+    get '/friendships/:id', to: 'friendships#show_list_by_user_id'
+    delete '/friendships/:id', to: 'friendships#destroy'
+
     scope '/auth' do
       post '/sign_up', to: 'users#create'
       post '/sign_in', to: 'users#sign_in'
+      post '/profile', to: 'users#profile'
+      put '/update', to: 'users#update' 
+      delete '/delete', to: 'users#delete' 
     end
   
   end
