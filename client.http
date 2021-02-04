@@ -43,8 +43,8 @@ POST http://localhost:3000/api/auth/sign_up
 Content-Type: application/json
 
 {
-  "username": "Sally", 
-  "email": "sally@test.com",
+  "username": "Sally1", 
+  "email": "sally@test1.com",
   "password": "password6",
   "password_confirmation": "password6"
 }
