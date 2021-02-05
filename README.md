@@ -2,6 +2,13 @@
 
 A movie app
 
+## Installation notes
+
+To generate a new master.key and credentials.yml.enc:
+Delete credentials.yml.enc then run the below code in your ternimal.
+
+`EDITOR="code --wait" rails credentials:edit`
+
 ## Description of your website, including:
 
 - Purpose
@@ -169,7 +176,5 @@ Adam wants to be his gatherings to be a blast for everyone and have an easy way 
 ### Jan 24 2021
 
 ![](img/trello_20210124.png)
-
-
 
 ![image-20210124221127529](/Users/robyn/Library/Application Support/typora-user-images/image-20210124221127529.png)

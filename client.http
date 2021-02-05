@@ -112,7 +112,7 @@ Content-Type: application/json
 }
 
 ### Successful show profile id:4
-POST http://localhost:3000/api/auth/profile
+GET http://localhost:3000/api/auth/profile
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MTI0MzMzNjUsInN1YiI6NH0.043CrUXtwtZjtWqp2FmlIUUfj6t7TyV6smqxz5ZtQfE
 
 ### Successfully update username
